@@ -1,8 +1,8 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const UsersConnection = require("./users");
+const UsersConnection = require("./users").UsersConnection;
 
-const hashPassword = async (password) => await bcrypt.hash(password, 10);
+const hashPassword = async (password) => await bcrypt.hash(password, 10); // added salt with 10 rounds
 
 class User {
   constructor({
@@ -81,13 +81,15 @@ class UserController {
         res.status(400).json(errors);
         return;
       }
-
+      // encrypt password
+      // remove it when the client side has this mechanism
       const userInfo = {
         ...userFromBody,
         password: await hashPassword(userFromBody.password),
       };
-
+      //console.log(userInfo);
       const insertResult = await UsersConnection.addUser(userInfo);
+      //console.log(insertResult);
       if (!insertResult.success) {
         errors.email = insertResult.error;
       }

@@ -1,7 +1,9 @@
 const app = require("./services/server").app;
 const { MongoClient } = require("mongodb");
 const UsersConnection = require("./services/database/users").UsersConnection;
-require("dotenv").config();
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config();
+}
 
 const port = process.env.PORT || 8000;
 console.log(process.env.DB_URI);
