@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "countyHunter_server",
   "version": "1.0.0",
   "description": "county hunter web app - final project of JS course in TLG",
@@ -8,23 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js"
-=======
-  "name": "countyhunter_server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
->>>>>>> 7cb6630b21cf4828983f7e29379f7cee7009b83d
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/countyHunter-Team1-TLG/countyHunter_server.git"
   },
-<<<<<<< HEAD
   "keywords": [],
-=======
->>>>>>> 7cb6630b21cf4828983f7e29379f7cee7009b83d
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -33,14 +21,12 @@
   "homepage": "https://github.com/countyHunter-Team1-TLG/countyHunter_server#readme",
   "dependencies": {
     "axios": "^0.21.1",
-<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.6",
     "nodemon": "^2.0.7"
-=======
-    "express": "^4.17.1"
->>>>>>> 7cb6630b21cf4828983f7e29379f7cee7009b83d
   }
 }

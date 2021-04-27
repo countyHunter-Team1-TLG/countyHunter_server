@@ -10,4 +10,4 @@ usersRouter.route("/logout").post(usersCtrl.logout);
 usersRouter.route("/delete").delete(usersCtrl.delete);
 usersRouter.route("/update-preferences").put(usersCtrl.save);
 
-module.exports = { usersRouter };
+module.exports = usersRouter;
