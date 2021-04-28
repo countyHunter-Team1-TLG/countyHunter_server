@@ -77,7 +77,7 @@ class UserController {
         errors.name = "You must specify a name of at least 3 characters.";
       }
       if (userFromBody && UsersConnection.getUser(userFromBody.email) != null) {
-        errors.name = `You cannot register accounts with same email address.${userFromBody.email}`;
+        errors.email = `You cannot register accounts with same email address.${userFromBody.email}`;
       }
 
       if (Object.keys(errors).length > 0) {
@@ -161,12 +161,15 @@ class UserController {
     try {
       const userJwt = req.get("Authorization").slice("Bearer ".length);
       const userObj = await User.decoded(userJwt);
+      console.log(userObj);
+
       var { error } = userObj;
       if (error) {
         res.status(401).json({ error });
         return;
       }
       const logoutResult = await UsersConnection.logoutUser(userObj.email);
+      console.log(logoutResult);
       var { error } = logoutResult;
       if (error) {
         res.status(500).json({ error });
