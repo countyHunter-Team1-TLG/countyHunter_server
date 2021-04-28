@@ -9,8 +9,8 @@ class User {
     name,
     email,
     password,
-    jobPreferences = {},
-    housePreferances = {},
+    jobPreferences = [],
+    housePreferances = [],
   } = {}) {
     this.name = name;
     this.email = email;
@@ -224,12 +224,9 @@ class UserController {
         return;
       }
       //Todo: update preference to existing list
-      let jobs = Object.assign(
-        userFromHeader.jobPreferences,
-        req.body.jobPreferences
-      );
-      let houses = Object.assign(
-        userFromHeader.housePreferances,
+      let jobs = userFromHeader.jobPreferences.push(req.body.jobPreferences);
+
+      let houses = userFromHeader.housePreferances.push(
         req.body.housePreferances
       );
       await UsersConnection.updatePreferences(

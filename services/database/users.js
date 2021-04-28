@@ -140,8 +140,8 @@ class UsersConnection {
    */
   static async updatePreferences(email, jobPreferences, housePreferances) {
     try {
-      jobPreferences = jobPreferences || {};
-      housePreferances = housePreferances || {};
+      jobPreferences = jobPreferences || [];
+      housePreferances = housePreferances || [];
 
       // email should be unique in "users"
       const updateResponse = await users.updateOne(
