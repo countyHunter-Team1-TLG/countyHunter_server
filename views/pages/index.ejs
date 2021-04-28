@@ -48,21 +48,31 @@
             />
             <label for="floatingPassword">Password</label>
           </div>
-
-          <div id="button" class="d-grid gap-2">
-            <button
-              style="margin-top: 10px"
-              id="login_button"
-              class="btn btn-lg btn-primary"
-              name="Submit"
-              value="Login"
-              type="Submit"
-            >
-              Login <i class="fas fa-arrow-alt-circle-right"></i>
-            </button>
           </div>
+            <div  id="form_end" style="display: flex; justify-content: space-evenly; margin-top: 10px">
+          <button type="button" class="btn btn-primary btn-lg">
+            Login <i class="fas fa-arrow-alt-circle-right"></i>
+          </button>
+          <button type="button" class="btn btn-primary btn-lg ">
+            Guest <i class="fas fa-arrow-alt-circle-right"></i>
+          </button>
+        </div>
+         
         </form>
-        <a href="/rgister">Register</a>
+        <div style="margin-top: 10px" class="border border">
+          <h4 class="form-signin-heading text-center">
+            Not a Member? Register Below!
+          </h4>
+          <div class="d-grid gap-2">
+            <a
+              style="margin-top: 10px"
+              class="btn btn-lg btn-primary"
+              href="/rgister"
+              role="button"
+              >Register <i class="far fa-address-card"></i
+            ></a>
+          </div>
+        </div>
       </div>
     </div>
     <script

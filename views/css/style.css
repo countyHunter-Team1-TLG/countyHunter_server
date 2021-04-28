@@ -31,10 +31,12 @@ a {
   height: auto;
   padding: 10px;
 }
-#button {
-  margin: 10px;
+#form_end {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
 }
-
+/* style="display: flex; justify-content: space-evenly; margin-top: 10px" */
 input[type="email"] {
   margin-bottom: 0px;
   border-bottom-left-radius: 0;
