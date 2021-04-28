@@ -161,15 +161,14 @@ class UserController {
     try {
       const userJwt = req.get("Authorization").slice("Bearer ".length);
       const userObj = await User.decoded(userJwt);
-      console.log(userObj);
-
+      //console.log(userObj);
       var { error } = userObj;
       if (error) {
         res.status(401).json({ error });
         return;
       }
       const logoutResult = await UsersConnection.logoutUser(userObj.email);
-      console.log(logoutResult);
+      //console.log(logoutResult);
       var { error } = logoutResult;
       if (error) {
         res.status(500).json({ error });
@@ -219,6 +218,7 @@ class UserController {
       const userJwt = req.get("Authorization").slice("Bearer ".length);
       const userFromHeader = await User.decoded(userJwt);
       var { error } = userFromHeader;
+      // if authentication token expired or wrong, login again
       if (error) {
         res.status(401).json({ error });
         return;
