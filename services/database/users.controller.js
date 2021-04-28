@@ -223,10 +223,19 @@ class UserController {
         res.status(401).json({ error });
         return;
       }
-
+      //Todo: update preference to existing list
+      let jobs = Object.assign(
+        userFromHeader.jobPreferences,
+        req.body.jobPreferences
+      );
+      let houses = Object.assign(
+        userFromHeader.housePreferances,
+        req.body.housePreferances
+      );
       await UsersConnection.updatePreferences(
         userFromHeader.email,
-        req.body.preferences
+        jobs,
+        houses
       );
       const userFromDB = await UsersConnection.getUser(userFromHeader.email);
       const updatedUser = new User(userFromDB);
