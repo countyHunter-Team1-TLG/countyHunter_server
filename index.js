@@ -1,6 +1,9 @@
 const app = require("./services/server").app;
 const { MongoClient } = require("mongodb");
 const UsersConnection = require("./services/database/users").UsersConnection;
+const HousingMarket = require("./services/database/housingMarket")
+  .HousingMarket;
+
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config();
 }
@@ -25,7 +28,7 @@ MongoClient.connect(
   })
   .then(async (client) => {
     await UsersConnection.injectDB(client);
-    //await another class object.injectDB(client);
+    await HousingMarket.injectDB(client);
     app.listen(port, () => {
       console.log(`listening on port ${port}`);
     });

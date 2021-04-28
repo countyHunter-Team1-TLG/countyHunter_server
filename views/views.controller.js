@@ -1,7 +1,7 @@
 class ViewController {
   static async register(req, res) {
     try {
-      res.send("register page");
+      res.render("register");
     } catch (e) {
       res.status(500).json({ error: e });
     }
