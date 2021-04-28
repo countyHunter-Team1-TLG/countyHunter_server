@@ -31,8 +31,11 @@ a {
   height: auto;
   padding: 10px;
 }
+#button {
+  margin: 10px;
+}
 
-input[type="text"] {
+input[type="email"] {
   margin-bottom: 0px;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
