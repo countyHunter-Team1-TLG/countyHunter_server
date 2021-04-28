@@ -76,6 +76,9 @@ class UserController {
       if (userFromBody && userFromBody.name.length < 3) {
         errors.name = "You must specify a name of at least 3 characters.";
       }
+      if (userFromBody && UserConnection.getUser(userFromBody.name) != null) {
+        errors.name = `You cannot register accounts with same email address.${userFromBody.name}`;
+      }
 
       if (Object.keys(errors).length > 0) {
         res.status(400).json(errors);
