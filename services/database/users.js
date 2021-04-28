@@ -87,7 +87,84 @@ class UsersConnection {
     }
   }
 
-  static async logoutUser(email) {}
+  /**
+   *
+   * @param {string} email from client
+   * @returns error if deletion failed
+   */
+  static async logoutUser(email) {
+    try {
+      await sessions.deleteOne({ user_id: email }); // delete session by email
+    } catch (e) {
+      console.error(`Error occurred while logging out user, ${e}`);
+      return { error: e };
+    }
+  }
+
+  static async getUserSession(email) {
+    try {
+      return session.findOne({ user_id: email });
+    } catch (e) {
+      console.error(`Error occurred while retrieving user session, ${e}`);
+      return null;
+    }
+  }
+
+  /**
+   * delete user by email from session and user account
+   * @param {string} email
+   * @returns ture if user was successfully deleted
+   */
+  static async deleteUser(email) {
+    try {
+      await users.deleteOne({ email });
+      await sessions.deleteOne({ user_id: email });
+      if (!(await this.getUser(email)) && !(await this.getUserSession(email))) {
+        return { success: true };
+      } else {
+        console.error(`Deletion unsuccessful`);
+        return { error: `Deletion unsuccessful` };
+      }
+    } catch (e) {
+      console.error(`Error occurred while deleting user, ${e}`);
+      return { error: e };
+    }
+  }
+
+  /**
+   *
+   * @param {STRING} email
+   * @param {Object} jobPreferences saved list of jobs
+   * @param {Object} housePreferances saved list of houses
+   * @returns
+   */
+  static async updatePreferences(email, jobPreferences, housePreferances) {
+    try {
+      jobPreferences = jobPreferences || {};
+      housePreferances = housePreferances || {};
+
+      // email should be unique in "users"
+      const updateResponse = await users.updateOne(
+        { email },
+        {
+          $set: {
+            jobPreferences: jobPreferences,
+            housePreferances: housePreferances,
+          },
+        }
+      );
+
+      if (updateResponse.matchedCount === 0) {
+        return { error: "No user found with that email" };
+      }
+      return updateResponse;
+    } catch (e) {
+      console.error(
+        `An error occurred while updating this user's preferences, ${e}`
+      );
+      return { error: e };
+    }
+  }
 }
 
 /**

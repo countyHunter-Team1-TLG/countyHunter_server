@@ -1,6 +1,4 @@
 const axios = require("axios");
-// const express = require("express");
-// const app = express();
 const domain = "https://jobs.github.com/positions.json?";
 
 class JobsController {
