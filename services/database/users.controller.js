@@ -78,7 +78,7 @@ class UserController {
       }
       const userFromDB = await UsersConnection.getUser(userFromBody.email);
 
-      if (userFromBody && userFromDB != null) {
+      if (userFromBody && !userFromDB) {
         console.log(userFromBody.email);
         errors.email = `You cannot register accounts with same email address.${userFromBody.email}`;
       }
@@ -99,7 +99,7 @@ class UserController {
       if (!insertResult.success) {
         errors.email = insertResult.error;
       }
-
+      userFromDB = await UsersConnection.getUser(userFromBody.email);
       if (!userFromDB) {
         errors.general = "Internal error, please try again later";
       }
