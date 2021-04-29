@@ -6,11 +6,10 @@ document
   .getElementById("user_login_button")
   .addEventListener("click", async function (ev) {
     let formData = new FormData(form);
-    await fetch(serverUrl, { method: "POST", body: formData }).then(
-      (response) => {
-        console.log(response);
-      }
-    );
+    let response = await fetch(serverUrl, {
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
+    let json = response.json();
+    console.log(json);
   });
-
-//
