@@ -36,13 +36,10 @@ class HousingMarket {
    * @param {CityInfo} cityInfoObject
    * @returns
    */
-  static async getAveragePrice(cityInfoObject) {
-    let averagePrice = 0;
-    // code here
-    return averagePrice;
+  static async getSurroundedData(city, state) {
+    //Todo: get data from cities around
+    //Todo: need data for adjacent cities
   }
-
-  static async getSurroundedAveragePrices(city, state) {}
 
   /**
    * collect city, state housing information from different database collection
@@ -138,6 +135,37 @@ class HousingMarket {
       errors.message = e;
       return errors;
     }
+  }
+  /**
+   *
+   * @param {db_collection} legend in collection name
+   * @returns full description of the data set
+   */
+  static getLegandName(legend) {
+    let name;
+    switch (legend) {
+      case db_collection.FOR_SALE_INVENTORY:
+        name = "For Sale Inventory";
+        break;
+      case db_collection.MEDIAN_DAYS_PENDING:
+        name = "Median Days Pending";
+        break;
+      case db_collection.MEDIAN_LIST_PRICE:
+        name = "Median List Price";
+        break;
+      case db_collection.MEDIAN_SALE_PRICE:
+        name = "Median Sale Price";
+        break;
+      case db_collection.SALES_COUNT:
+        name = "Sales Count";
+        break;
+      case db_collection.MEDIAN_PRICE_CUT:
+        name = "Median Price Cut";
+        break;
+      default:
+        break;
+    }
+    return name;
   }
 }
 

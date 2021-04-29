@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Todo: users and jobs APIs only available for loged in users
 // Register api routes
+app.use(express.static("countyHunter_client"));
 app.use("/user", usersRouter);
 app.use("/jobs", jobsRouter);
 app.use("/views", viewsRouter);
