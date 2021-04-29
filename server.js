@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 app.set("views", "./views/pages");
 // static files
 app.use("/Assets", express.static("./views/Assets"));
-app.use("/js", express.static(__dirname + "./js"));
+app.use("/js", express.static("./views/js"));
 
 app.use(cors());
 //process.env.NODE_ENV !== "prod" && app.use(morgan("dev"));
