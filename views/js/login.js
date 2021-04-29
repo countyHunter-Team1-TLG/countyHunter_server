@@ -8,8 +8,8 @@ document
     let formData = new FormData(form);
     let response = await fetch(serverUrl, {
       method: "POST",
-      body: JSON.stringify(formData),
+      body: formData,
     });
-    let json = response.json();
+    let json = await response.json();
     console.log(json);
   });
