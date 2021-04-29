@@ -69,6 +69,7 @@ class UserController {
   static async register(req, res) {
     try {
       const userFromBody = req.body;
+      console.log(userFromBody);
       console.log(userFromBody.email);
       console.log(userFromBody.password);
       console.log(req.headers);
