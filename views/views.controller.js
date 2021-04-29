@@ -9,7 +9,7 @@ class ViewController {
 
   static async login(req, res, next) {
     try {
-      res.render("index");
+      res.render("login");
     } catch (e) {
       res.status(400).json({ error: e });
       return;

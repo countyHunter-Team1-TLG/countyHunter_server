@@ -77,6 +77,7 @@ class UserController {
         errors.name = "You must specify a name of at least 3 characters.";
       }
       if (userFromBody && UsersConnection.getUser(userFromBody.email) != null) {
+        console.log(userFromBody.email);
         errors.email = `You cannot register accounts with same email address.${userFromBody.email}`;
       }
 
@@ -97,6 +98,7 @@ class UserController {
         errors.email = insertResult.error;
       }
       const userFromDB = await UsersConnection.getUser(userFromBody.email);
+
       if (!userFromDB) {
         errors.general = "Internal error, please try again later";
       }
@@ -130,6 +132,7 @@ class UserController {
           .json({ error: "Bad password format, expected string." });
         return;
       }
+
       let userData = await UsersConnection.getUser(email);
       if (!userData) {
         res.status(401).json({ error: "Make sure your email is correct." });

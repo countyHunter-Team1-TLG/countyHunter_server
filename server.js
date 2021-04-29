@@ -10,6 +10,9 @@ const houseRouter = require("./services/database/housing.route");
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", "./views/pages");
+// static files
+app.use("/Assets", express.static("./views/Assets"));
+app.use("/js", express.static(__dirname + "./js"));
 
 app.use(cors());
 //process.env.NODE_ENV !== "prod" && app.use(morgan("dev"));
@@ -18,7 +21,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Todo: users and jobs APIs only available for loged in users
 // Register api routes
-app.use(express.static("countyHunter_client"));
 app.use("/user", usersRouter);
 app.use("/jobs", jobsRouter);
 app.use("/views", viewsRouter);

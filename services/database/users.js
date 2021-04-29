@@ -1,3 +1,5 @@
+const { use } = require("./users.route");
+
 let users;
 let sessions;
 
@@ -29,7 +31,9 @@ class UsersConnection {
    * @returns
    */
   static async getUser(email) {
-    return await users.findOne({ email });
+    let userDB = await users.findOne({ email });
+    console.log(userDB);
+    return userDB;
   }
 
   /**
