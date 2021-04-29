@@ -6,9 +6,10 @@ document
   .getElementById("user_login_button")
   .addEventListener("click", async function (ev) {
     let formData = new FormData(form);
+    const data = new URLSearchParams(formData);
     let response = await fetch(serverUrl, {
       method: "POST",
-      body: formData,
+      body: data,
     });
     let json = await response.json();
     console.log(json);
