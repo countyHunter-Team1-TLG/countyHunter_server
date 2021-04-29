@@ -71,6 +71,7 @@ class UserController {
       const userFromBody = req.body;
       console.log(userFromBody.email);
       console.log(userFromBody.password);
+      console.log(req.headers);
 
       let errors = {};
       if (userFromBody && userFromBody.password.length < 8) {
