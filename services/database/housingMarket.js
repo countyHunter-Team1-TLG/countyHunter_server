@@ -62,16 +62,23 @@ class HousingMarket {
       if (target == null) {
         error.success = false;
       } else {
+        //const reg = /\d{4}$/g;
+        // extract what we need for data visualization
         for (const [key, value] of Object.entries(target)) {
           if (key === `RegionName`) {
-            result.name = value;
-          } else if (key.includes(`2019`) || key.includes(`2020`)) {
-            result.values.push(`{time:${key}, value:${value}}`);
+            result.name = housingDbCollection;
+          } else if (
+            key.includes("2019") ||
+            key.includes("2020") ||
+            key.includes("2021")
+          ) {
+            let date = new Date(key);
+            const formatted_date = `${date.getUTCFullYear()}-${date.getUTCMonth()}-${date.getUTCDate()}`;
+            let tem_object = { time: formatted_date, value: value };
+            result.values.push(tem_object);
           }
         }
       }
-      console.log(result);
-      //console.log(Object.entries(item));
       return result;
     } catch (e) {
       console.error(e);
@@ -83,18 +90,54 @@ class HousingMarket {
   static async getSingleDataReady(housingDbCollection, city, state) {}
 
   static async getVisualizationDataArrays(city, state) {
-    let fsi = getArrayDataReady(
-      h_db_collections.FOR_SALE_INVENTORY,
-      city,
-      state
-    );
-    let mpc = getArrayDataReady(h_db_collections.MEDIAN_PRICE_CUT, city, state);
-    let sc = getArrayDataReady(h_db_collections.SALES_COUNT, city, state);
-    let mdp = getArrayDataReady(
-      h_db_collections.MEDIAN_DAYS_PENDING,
-      city,
-      state
-    );
+    let errors = {};
+    let result = [];
+    try {
+      let fsi = await HousingMarket.getArrayDataReady(
+        h_db_collections.FOR_SALE_INVENTORY,
+        city,
+        state
+      );
+      if (fsi.success == false) {
+        errors.fsi = `Couldn't fetch FOR_SALE_INVENTORY`;
+      } else {
+        result.push(fsi);
+      }
+      let mpc = await HousingMarket.getArrayDataReady(
+        h_db_collections.MEDIAN_PRICE_CUT,
+        city,
+        state
+      );
+      if (mpc.success == false) {
+        errors.mpc = `Couldn't fetch MEDIAN_PRICE_CUT`;
+      } else {
+        result.push(mpc);
+      }
+      let sc = await HousingMarket.getArrayDataReady(
+        h_db_collections.SALES_COUNT,
+        city,
+        state
+      );
+      if (sc.success == false) {
+        errors.sc = `Couldn't fetch SALES_COUNT`;
+      } else {
+        result.push(sc);
+      }
+      let mdp = await HousingMarket.getArrayDataReady(
+        h_db_collections.MEDIAN_DAYS_PENDING,
+        city,
+        state
+      );
+      if (mdp.success == false) {
+        errors.mdp = `Couldn't fetch MEDIAN_DAYS_PENDING`;
+      } else {
+        result.push(mdp);
+      }
+      return result;
+    } catch (e) {
+      errors.message = e;
+      return errors;
+    }
   }
 }
 

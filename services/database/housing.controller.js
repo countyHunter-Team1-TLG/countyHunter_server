@@ -23,7 +23,11 @@ class HousingController {
         res.status(400).json(errors);
         return;
       }
-      res.send();
+      let result = await HousingMarket.getVisualizationDataArrays(
+        houseFromBody.city,
+        houseFromBody.state
+      );
+      res.send(result);
     } catch (e) {
       res.status(500).json({ error: e });
     }
