@@ -12,5 +12,5 @@ document
       body: data,
     });
     let json = await response.json();
-    console.log(json);
+    alert(json.error);
   });
