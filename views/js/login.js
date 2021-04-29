@@ -13,8 +13,9 @@ document
       body: data,
     });
     let json = await response.json();
-    if (!json.success) {
+    if (json.success) {
+      console.log(json);
+    } else {
       alert(json.error);
     }
-    console.log(json);
   });

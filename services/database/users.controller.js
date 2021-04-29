@@ -125,11 +125,16 @@ class UserController {
     }
   }
 
+  /**
+   *
+   * @param {object} req request from client
+   * @param {object} res response for client
+   * @param {next} next
+   * @returns
+   */
   static async login(req, res, next) {
     try {
       const { email, password } = req.body;
-      console.log(req.body);
-      console.log(`email-${email}, password-${password}`);
       if (!email || typeof email !== "string") {
         res.status(400).json({ error: "Bad email format, expected string." });
         return;
@@ -172,14 +177,12 @@ class UserController {
     try {
       const userJwt = req.get("Authorization").slice("Bearer ".length);
       const userObj = await User.decoded(userJwt);
-      //console.log(userObj);
       var { error } = userObj;
       if (error) {
         res.status(401).json({ error });
         return;
       }
       const logoutResult = await UsersConnection.logoutUser(userObj.email);
-      //console.log(logoutResult);
       var { error } = logoutResult;
       if (error) {
         res.status(500).json({ error });
