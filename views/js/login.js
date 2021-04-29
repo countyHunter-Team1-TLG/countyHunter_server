@@ -5,6 +5,7 @@ var form = document.forms.namedItem("user_login_form");
 document
   .getElementById("user_login_button")
   .addEventListener("click", async function (ev) {
+    ev.preventDefault();
     let formData = new FormData(form);
     const data = new URLSearchParams(formData);
     let response = await fetch(serverUrl, {
@@ -12,5 +13,7 @@ document
       body: data,
     });
     let json = await response.json();
-    alert(json.error);
+    if (!json.error) {
+      alert(json.error);
+    }
   });
