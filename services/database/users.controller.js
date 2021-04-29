@@ -69,6 +69,9 @@ class UserController {
   static async register(req, res) {
     try {
       const userFromBody = req.body;
+      console.log(userFromBody.email);
+      console.log(userFromBody.password);
+
       let errors = {};
       if (userFromBody && userFromBody.password.length < 8) {
         errors.password = "Your password must be at least 8 characters.";
@@ -78,7 +81,7 @@ class UserController {
       }
       const userFromDB = await UsersConnection.getUser(userFromBody.email);
 
-      if (userFromBody && !userFromDB) {
+      if (userFromBody && userFromDB != null) {
         console.log(userFromBody.email);
         errors.email = `You cannot register accounts with same email address.${userFromBody.email}`;
       }
@@ -86,35 +89,36 @@ class UserController {
       if (Object.keys(errors).length > 0) {
         res.status(400).json(errors);
         return;
-      }
-      // encrypt password
-      // remove it when the client side has this mechanism
-      const userInfo = {
-        ...userFromBody,
-        password: await hashPassword(userFromBody.password),
-      };
-      //console.log(userInfo);
-      const insertResult = await UsersConnection.addUser(userInfo);
-      //console.log(insertResult);
-      if (!insertResult.success) {
-        errors.email = insertResult.error;
-      }
-      userFromDB = await UsersConnection.getUser(userFromBody.email);
-      if (!userFromDB) {
-        errors.general = "Internal error, please try again later";
-      }
+      } else {
+        // encrypt password
+        // remove it when the client side has this mechanism
+        const userInfo = {
+          ...userFromBody,
+          password: await hashPassword(userFromBody.password),
+        };
+        //console.log(userInfo);
+        const insertResult = await UsersConnection.addUser(userInfo);
+        //console.log(insertResult);
+        if (!insertResult.success) {
+          errors.email = insertResult.error;
+        }
+        userFromDB = await UsersConnection.getUser(userFromBody.email);
+        if (!userFromDB) {
+          errors.general = "Internal error, please try again later";
+        }
 
-      if (Object.keys(errors).length > 0) {
-        res.status(400).json(errors);
-        return;
+        if (Object.keys(errors).length > 0) {
+          res.status(400).json(errors);
+          return;
+        }
+
+        const user = new User(userFromDB);
+
+        res.json({
+          auth_token: user.encoded(),
+          info: user.toJson(),
+        });
       }
-
-      const user = new User(userFromDB);
-
-      res.json({
-        auth_token: user.encoded(),
-        info: user.toJson(),
-      });
     } catch (e) {
       res.status(500).json({ error: e });
     }
