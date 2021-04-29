@@ -13,7 +13,7 @@ document
       body: data,
     });
     let json = await response.json();
-    if (json.error !== "") {
+    if (!json.success) {
       alert(json.error);
     }
     console.log(json);
