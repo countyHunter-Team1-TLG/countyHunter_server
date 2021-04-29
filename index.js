@@ -1,4 +1,4 @@
-const app = require("./services/server").app;
+const app = require("./server").app;
 const { MongoClient } = require("mongodb");
 const UsersConnection = require("./services/database/users").UsersConnection;
 const HousingMarket = require("./services/database/housingMarket")
