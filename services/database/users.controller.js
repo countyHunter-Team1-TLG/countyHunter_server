@@ -105,7 +105,7 @@ class UserController {
           errors.email = insertResult.error;
         }
         userFromDB = await UsersConnection.getUser(userFromBody.email);
-        if (!userFromDB) {
+        if (userFromDB == null) {
           errors.general = "Internal error, please try again later";
         }
 
@@ -115,8 +115,7 @@ class UserController {
         }
 
         const user = new User(userFromDB);
-
-        res.json({
+        res.send({
           auth_token: user.encoded(),
           info: user.toJson(),
         });
