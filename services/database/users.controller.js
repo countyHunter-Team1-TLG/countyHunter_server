@@ -128,6 +128,7 @@ class UserController {
   static async login(req, res, next) {
     try {
       const { email, password } = req.body;
+      console.log(`email-${email}, password-${password}`);
       if (!email || typeof email !== "string") {
         res.status(400).json({ error: "Bad email format, expected string." });
         return;
