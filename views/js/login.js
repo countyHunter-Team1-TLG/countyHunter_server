@@ -6,9 +6,11 @@ document
   .getElementById("user_login_button")
   .addEventListener("click", async function (ev) {
     let formData = new FormData(form);
-    await axios.post(serverUrl, formData).then((response) => {
-      console.log(response);
-    });
+    await fetch(serverUrl, { method: "POST", body: formData }).then(
+      (response) => {
+        console.log(response);
+      }
+    );
   });
 
 //
