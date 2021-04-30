@@ -79,10 +79,10 @@ class UserController {
       }
       const userFromDB = await UsersConnection.getUser(userFromBody.email);
 
-      if (userFromBody && userFromDB != null) {
+      if (userFromBody && userFromDB.email !== "") {
         errors.email = `You cannot register accounts with same email address ${userFromBody.email}`;
       }
-      console.log(errors);
+
       if (Object.keys(errors).length > 0) {
         res.status(400).json(errors);
         return;
@@ -108,11 +108,9 @@ class UserController {
           res.status(400).json(errors);
           return;
         }
-
-        const user = new User(userFromDB);
         res.send({
           auth_token: user.encoded(),
-          info: user.toJson(),
+          info: userFromDB, // already convert to Json
         });
       }
     } catch (e) {

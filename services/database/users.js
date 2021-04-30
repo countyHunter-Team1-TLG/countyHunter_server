@@ -36,6 +36,8 @@ class UsersConnection {
       let userDB = await users.findOne({ email: userEmail });
       console.log(`getUser():${userDB}`);
       let json = await new User(userDB).toJson();
+      console.log(`getUser()-json:${json}`);
+
       return json;
     } catch (e) {
       return { error: e };
