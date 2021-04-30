@@ -37,8 +37,8 @@ function addDataVisulization() {
 function displayData(data) {
   // set the dimensions and margins of the graph
   let dataDisplayMargin = { top: 10, right: 100, bottom: 30, left: 30 },
-    width = 900 - dataDisplayMargin.left - dataDisplayMargin.right,
-    height = 400 - dataDisplayMargin.top - dataDisplayMargin.bottom;
+    width = 960 - dataDisplayMargin.left - dataDisplayMargin.right,
+    height = 500 - dataDisplayMargin.top - dataDisplayMargin.bottom;
 
   // append the svg object to the body of the page
   let svg = d3
@@ -57,134 +57,8 @@ function displayData(data) {
   let dataDB = data;
   if (typeof dataDB != Array) {
     console.log("display data: dataDB not array");
+    return;
   }
-  // let dataDB = [
-  //   {
-  //     name: "FSI",
-  //     values: [
-  //       { time: "2019-0-31", value: "10226.0" },
-  //       { time: "2019-1-28", value: "9009.0" },
-  //       { time: "2019-2-31", value: "9538.0" },
-  //       { time: "2019-3-30", value: "10330.0" },
-  //       { time: "2019-4-31", value: "12295.0" },
-  //       { time: "2019-5-30", value: "13779.0" },
-  //       { time: "2019-6-31", value: "14777.0" },
-  //       { time: "2019-7-31", value: "14632.0" },
-  //       { time: "2019-8-30", value: "14030.0" },
-  //       { time: "2019-9-31", value: "13198.0" },
-  //       { time: "2019-10-30", value: "11648.0" },
-  //       { time: "2019-11-31", value: "9378.0" },
-  //       { time: "2020-0-31", value: "7542.0" },
-  //       { time: "2020-1-29", value: "6835.0" },
-  //       { time: "2020-2-31", value: "7544.0" },
-  //       { time: "2020-3-30", value: "8204.0" },
-  //       { time: "2020-4-31", value: "9134.0" },
-  //       { time: "2020-5-30", value: "9683.0" },
-  //       { time: "2020-6-31", value: "10544.0" },
-  //       { time: "2020-7-31", value: "11159.0" },
-  //       { time: "2020-8-30", value: "11491.0" },
-  //       { time: "2020-9-31", value: "11501.0" },
-  //       { time: "2020-10-30", value: "10407.0" },
-  //       { time: "2020-11-31", value: "8751.0" },
-  //       { time: "2021-0-31", value: "7300.0" },
-  //       { time: "2021-1-28", value: "6700.0" },
-  //       { time: "2021-2-31", value: "7379.0" },
-  //     ],
-  //   },
-  //   {
-  //     name: "MPC",
-  //     values: [
-  //       { time: "2019-0-31", value: "19984.1907" },
-  //       { time: "2019-1-28", value: "21193.9377" },
-  //       { time: "2019-2-31", value: "22209.7552" },
-  //       { time: "2019-3-30", value: "23620.0689" },
-  //       { time: "2019-4-31", value: "23979.1776" },
-  //       { time: "2019-5-30", value: "24340.4773" },
-  //       { time: "2019-6-31", value: "23192.9245" },
-  //       { time: "2019-7-31", value: "21892.8644" },
-  //       { time: "2019-8-30", value: "21039.3037" },
-  //       { time: "2019-9-31", value: "21192.0067" },
-  //       { time: "2019-10-30", value: "20954.5468" },
-  //       { time: "2019-11-31", value: "19860.12" },
-  //       { time: "2020-0-31", value: "21259.4717" },
-  //       { time: "2020-1-29", value: "24521.1786" },
-  //       { time: "2020-2-31", value: "28123.1338" },
-  //       { time: "2020-3-30", value: "26748.5783" },
-  //       { time: "2020-4-31", value: "24775.0246" },
-  //       { time: "2020-5-30", value: "23574.9783" },
-  //       { time: "2020-6-31", value: "25183.9476" },
-  //       { time: "2020-7-31", value: "25621.4695" },
-  //       { time: "2020-8-30", value: "26816.1483" },
-  //       { time: "2020-9-31", value: "26905.8355" },
-  //       { time: "2020-10-30", value: "27557.9811" },
-  //       { time: "2020-11-31", value: "25869.9772" },
-  //       { time: "2021-0-31", value: "27118.905" },
-  //       { time: "2021-1-28", value: "29168.5045" },
-  //       { time: "2021-2-31", value: "30973.2223" },
-  //     ],
-  //   },
-  //   {
-  //     name: "SC",
-  //     values: [
-  //       { time: "2019-0-31", value: "3382.0" },
-  //       { time: "2019-1-28", value: "4088.0" },
-  //       { time: "2019-2-31", value: "4868.0" },
-  //       { time: "2019-3-30", value: "5825.0" },
-  //       { time: "2019-4-31", value: "6619.0" },
-  //       { time: "2019-5-30", value: "6559.0" },
-  //       { time: "2019-6-31", value: "6596.0" },
-  //       { time: "2019-7-31", value: "6308.0" },
-  //       { time: "2019-8-30", value: "5270.0" },
-  //       { time: "2019-9-31", value: "5611.0" },
-  //       { time: "2019-10-30", value: "4691.0" },
-  //       { time: "2019-11-31", value: "4859.0" },
-  //       { time: "2020-0-31", value: "3331.0" },
-  //       { time: "2020-1-29", value: "3660.0" },
-  //       { time: "2020-2-31", value: "4695.0" },
-  //       { time: "2020-3-30", value: "4108.0" },
-  //       { time: "2020-4-31", value: "4126.0" },
-  //       { time: "2020-5-30", value: "5718.0" },
-  //       { time: "2020-6-31", value: "6560.0" },
-  //       { time: "2020-7-31", value: "6333.0" },
-  //       { time: "2020-8-30", value: "6701.0" },
-  //       { time: "2020-9-31", value: "6891.0" },
-  //       { time: "2020-10-30", value: "5450.0" },
-  //       { time: "2020-11-31", value: "5724.0" },
-  //       { time: "2021-0-31", value: "3600.0" },
-  //       { time: "2021-1-28", value: "3896.0" },
-  //       { time: "2021-2-31", value: "4577.0" },
-  //     ],
-  //   },
-  //   {
-  //     name: "MDDP",
-  //     values: [
-  //       { time: "2019-0-31", value: "29" },
-  //       { time: "2019-1-28", value: "22" },
-  //       { time: "2019-2-31", value: "12" },
-  //       { time: "2019-3-30", value: "8" },
-  //       { time: "2019-4-31", value: "7" },
-  //       { time: "2019-5-30", value: "8" },
-  //       { time: "2019-6-31", value: "9" },
-  //       { time: "2019-7-31", value: "11" },
-  //       { time: "2019-8-30", value: "12" },
-  //       { time: "2019-9-31", value: "13" },
-  //       { time: "2019-10-30", value: "14" },
-  //       { time: "2019-11-31", value: "16" },
-  //       { time: "2020-0-31", value: "14" },
-  //       { time: "2020-1-29", value: "10" },
-  //       { time: "2020-2-31", value: "5" },
-  //       { time: "2020-3-30", value: "5" },
-  //       { time: "2020-4-31", value: "6" },
-  //       { time: "2020-5-30", value: "6" },
-  //       { time: "2020-6-31", value: "6" },
-  //       { time: "2020-7-31", value: "6" },
-  //       { time: "2020-8-30", value: "6" },
-  //       { time: "2020-9-31", value: "6" },
-  //       { time: "2020-10-30", value: "6" },
-  //       { time: "2020-11-31", value: "7" },
-  //     ],
-  //   },
-  // ];
 
   // List of groups (here I have one group per column)
   let allGroup = [
@@ -221,7 +95,7 @@ function displayData(data) {
       }),
     };
   });
-  // I strongly advise to have a look to dataReady with
+  // check data difficiency
   console.log(dataReady);
 
   // A color scale: one color for each group
@@ -328,7 +202,7 @@ function displayData(data) {
     })
     .attr("y", 30)
     .text(function (d) {
-      return d.name;
+      return getLegandName(d.name);
     })
     .style("fill", function (d) {
       return myColor(d.name);
@@ -355,4 +229,36 @@ function displayData(data) {
     .call(d3.axisBottom(x).tickFormat(d3.timeFormat(xFormat)));
 
   g.append("g").call(d3.axisLeft(y));
+}
+
+/**
+ *
+ * @param {db_collection} legend in collection name
+ * @returns full description of the data set
+ */
+function getLegandName(legend) {
+  let name;
+  switch (legend) {
+    case db_collection.FOR_SALE_INVENTORY:
+      name = "For Sale Inventory";
+      break;
+    case db_collection.MEDIAN_DAYS_PENDING:
+      name = "Median Days Pending";
+      break;
+    case db_collection.MEDIAN_LIST_PRICE:
+      name = "Median List Price";
+      break;
+    case db_collection.MEDIAN_SALE_PRICE:
+      name = "Median Sale Price";
+      break;
+    case db_collection.SALES_COUNT:
+      name = "Sales Count";
+      break;
+    case db_collection.MEDIAN_PRICE_CUT:
+      name = "Median Price Cut";
+      break;
+    default:
+      break;
+  }
+  return name;
 }
