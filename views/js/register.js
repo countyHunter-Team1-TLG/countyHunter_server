@@ -15,7 +15,11 @@ document
     });
     let json = await response.json();
     if (!json.auth_token) {
-      alert(json.error);
+      if (json.errors === undefined) {
+        alert(json.error);
+      } else {
+        alert(json.errors);
+      }
     }
     console.log(json);
   });

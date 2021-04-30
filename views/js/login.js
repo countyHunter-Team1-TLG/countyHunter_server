@@ -14,9 +14,12 @@ document
       body: data,
     });
     let json = await response.json();
-    if (json.success) {
-      console.log(json);
-    } else {
-      alert(json.error);
+    if (!json.auth_token) {
+      if (json.errors === undefined) {
+        alert(json.error);
+      } else {
+        alert(json.errors);
+      }
     }
+    console.log(json);
   });
