@@ -232,8 +232,10 @@ class UserController {
     try {
       const userJwt = req.get("Authorization").slice("Bearer ".length);
       const userFromHeader = await User.decoded(userJwt);
+      console.log(`userFromHeader ${userFromHeader}`);
       var { error } = userFromHeader;
       // if authentication token expired or wrong, login again
+      console.log(error);
       if (error) {
         res.status(401).json({ error });
         return;
