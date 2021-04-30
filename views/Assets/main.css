@@ -89,7 +89,7 @@ form .btn,
   margin-right: 10px;
 }
 
-#index_container {
+#index_container, #charts {
   height: 100vmax;
 }
 
