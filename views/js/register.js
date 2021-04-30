@@ -16,7 +16,7 @@ document
     let json = await response.json();
     if (!json.auth_token) {
       if (json.errors === undefined) {
-        alert(json.error);
+        alert(json);
       } else {
         alert(json.errors);
       }
