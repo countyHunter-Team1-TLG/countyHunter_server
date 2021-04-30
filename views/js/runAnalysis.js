@@ -196,10 +196,12 @@ function displayData(data) {
     .enter()
     .append("g")
     .append("text")
-    .attr("x", function (d, i) {
-      return 30 + i * 60;
+    .attr("transform", function (d, i) {
+      var x_pos =
+        d3.select(this).select("text").node().getComputedTextLength() + 20;
+      x_offset = x_offset + x_pos;
+      return "translate(" + (x_offset - x_pos + margin.left) + ", 20)";
     })
-    .attr("y", 30)
     .text(function (d) {
       return getLegandName(d.name);
     })
