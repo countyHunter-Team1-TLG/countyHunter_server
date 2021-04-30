@@ -57,7 +57,6 @@ function displayData(data) {
   let dataDB = data;
   if (typeof dataDB != Array) {
     console.log("display data: dataDB not array");
-    return;
   }
 
   // List of groups (here I have one group per column)
