@@ -17,6 +17,7 @@ let svg = d3
 
 //Read the data
 // this need to be pulled from Mongodb
+
 let dataDB = [
   {
     name: "FSI",
@@ -282,17 +283,23 @@ svg
   .enter()
   .append("g")
   .append("text")
-  .attr("x", function (d, i) {
-    return 30 + i * 60;
+  .attr("transform", function (d, i) {
+    var x_pos =
+      d3.select(this).select("text").node().getComputedTextLength() + 20;
+    x_offset = x_offset + x_pos;
+    return "translate(" + (x_offset - x_pos + margin.left) + ", 20)";
   })
-  .attr("y", 30)
+  // .attr("x", function (d, i) {
+  //   return 100 + i * 200;
+  // })
+  // .attr("y", 30)
   .text(function (d) {
     return d.name;
   })
   .style("fill", function (d) {
     return myColor(d.name);
   })
-  .style("font-size", 15)
+  .style("font-size", 20)
   .on("click", function (d) {
     // is the element currently visible ?
     currentOpacity = d3.selectAll("." + d.name).style("opacity");
