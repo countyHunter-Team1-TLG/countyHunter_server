@@ -21,6 +21,8 @@ document
     let json = await response.json();
     console.log(json);
 
+    // refresh and display
+    document.getElementById("my_dataviz").innerHTML = "";
     displayData();
   });
 

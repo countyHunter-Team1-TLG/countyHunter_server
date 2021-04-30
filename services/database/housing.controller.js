@@ -28,6 +28,7 @@ class HousingController {
         houseFromBody.city,
         houseFromBody.state
       );
+      console.log(result);
       res.send(result);
     } catch (e) {
       res.status(500).json({ error: e });
