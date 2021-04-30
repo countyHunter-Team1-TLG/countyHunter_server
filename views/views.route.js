@@ -12,5 +12,6 @@ viewsRouter.route("/job/finder").get(viewsCtrl.jobFinder); // redirect to main p
 viewsRouter.route("/favorites").get(viewsCtrl.favorites); // redirect to main page
 viewsRouter.route("/mission").get(viewsCtrl.mission); // redirect to main page
 viewsRouter.route("/aboutUs").get(viewsCtrl.aboutUs); // redirect to main page
+viewsRouter.route("/updates").get(viewsCtrl.udpates); // redirect to main page
 
 module.exports = viewsRouter;

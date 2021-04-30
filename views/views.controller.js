@@ -65,9 +65,10 @@ class ViewController {
       return;
     }
   }
-  static async udpate(req, res, next) {
+
+  static async udpates(req, res, next) {
     try {
-      res.render("update");
+      res.render("updates");
     } catch (e) {
       res.status(400).json({ error: e });
       return;
