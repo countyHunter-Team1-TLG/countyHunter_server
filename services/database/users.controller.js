@@ -86,7 +86,7 @@ class UserController {
 
       console.log(errors);
       console.log(Object.keys(errors).length);
-      console.log(Object.keys(errors.error).length);
+      //console.log(Object.keys(errors.error).length);
 
       if (Object.keys(errors).length > 0) {
         console.log(2);
