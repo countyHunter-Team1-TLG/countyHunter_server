@@ -18,7 +18,7 @@ class ViewController {
 
   static async main(req, res, next) {
     try {
-      res.send("main page");
+      res.render("index");
     } catch (e) {
       res.status(400).json({ error: e });
       return;

@@ -1,120 +1,120 @@
 document.getElementById("job-search").addEventListener("submit", searchJobs);
-document.getElementById("details-00").addEventListener("click", detailsSend);
+//document.getElementById("favs").addEventListener("click", addToFavorites);
+
+let jobsArray;
+
+// function addToFavorites() {
+//   let preference = document.getElementById("company-title-00").innerHTML;
+//   const URLPOST = `https://countyhunter.herokuapp.com/user/update-preferences`;
+//   let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MTk3MjYxMjYsIm5hbWUiOiJXQU5HIiwiZW1haWwiOiJhbm90aGVyd2FuZy54YW5kZXJAZ21haWwuY29tIiwiam9iUHJlZmVyZW5jZXMiOjEsImhvdXNlUHJlZmVyYW5jZXMiOjEsImlhdCI6MTYxOTcyMjUyNn0.0dBzPCoICNKS45yc9jX4oa6PB8Q9nnZGYau0t-L1qWQ`;
+//   return fetch(URLPOST, {
+//     method: "POST",
+//     body: { jobPreferences: preference },
+//     headers: {
+//       Authorization: `auth_token ${token}`,
+//     },
+//   })
+//     .then((response) => response.json())
+//     .then((response) => console.log(response));
+// }
 
 //handle search button click
-function searchJobs(e) {
+async function searchJobs(e) {
   e.preventDefault();
 
   const searchJob = e.target.inputTechnology.value;
-  const jobLocation = e.target.inputCity.value;
+  const cityTarget = e.target.inputCity.value;
+  const stTarget = e.target.inputState.value;
+  const zipTarget = e.target.inputZip.value;
 
   //   const URLOLD = `https://jobs.github.com/positions?description=${searchJob}&location=${jobLocation}`;
 
-  const URL = `https://countyhunter.herokuapp.com/jobs/getJobs?description=${searchJob}&location=${jobLocation}`;
+  // const URL = `https://countyhunter.herokuapp.com/jobs/getJobs?description=${searchJob}&location=${jobLocation}`;
 
-  fetch(URL)
-    .then((res) => res.json())
-    .then((json) => displayFoundJobs(json));
+  console.log(searchJob);
+  console.log(cityTarget);
+  console.log(stTarget);
+  console.log(zipTarget);
+
+  if (searchJob != 0) {
+    jobsArray = await getJobs(searchJob, cityTarget);
+    console.log(jobsArray);
+    displayFoundJobs(jobsArray);
+  } else {
+    return window.alert(
+      "No job results with the given technology at the specified location. Try another city"
+    );
+  }
+  // if () {
+
+  // }
+}
+
+async function getJobs(searchJob, jobLocation) {
+  // const API = `https://countyhunter.herokuapp.com/jobs/getJobs?description=${searchJob}&location=${jobLocation}`;
+  const API = `https://github-jobs-cris.herokuapp.com/jobs?tech=${searchJob}&location=${jobLocation}`;
+
+  try {
+    const response = await fetch(API);
+    const jsonData = await response.json();
+    return jsonData;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //handle displaying of found jobs
 function displayFoundJobs(data) {
-  const addTo = document.getElementById("jlink-list");
-  if (data.length === 0) {
-    document.getElementById("job-title").innerHTML = "job is not found";
-    document.getElementById("company").innerHTML =
-      "job is not found theres is not company";
-    document
-      .getElementById("company-logo")
-      .setAttribute("src", "./images/countyhunters.png");
-    document.getElementById("description").innerHTML =
-      "no description avaliable ";
+  const container = document.querySelector("#card_container");
+  container.innerHTML = "";
 
-    addTo.innerHTML = "";
-    return;
-  } else {
-    //first job
-    document.getElementById("company-title-00").innerHTML =
-      data[0].company + " : " + data[0].title;
-    document
-      .getElementById("companylogo-00")
-      .setAttribute("src", data[0].company_logo);
-    document.getElementById("company-description-00").innerHTML =
-      data[0].description;
-
-    // if (data.length === 2) {
-    //rest of the jobs SIDE BAR
-    document.getElementById("company-title-01").innerHTML =
-      data[1].company + " : " + data[1].title;
-    document
-      .getElementById("companylogo-01")
-      .setAttribute("src", data[1].company_logo);
-    document.getElementById("company-description-01").innerHTML =
-      data[1].description;
-
-    //   return;
-    // } else if (data.length === 3) {
-    document.getElementById("company-title-02").innerHTML =
-      data[2].company + " : " + data[2].title;
-    document
-      .getElementById("companylogo-02")
-      .setAttribute("src", data[2].company_logo);
-    document.getElementById("company-description-02").innerHTML =
-      data[2].description;
-
-    document.getElementById("company-title-03").innerHTML =
-      data[3].company + " : " + data[3].title;
-    document
-      .getElementById("companylogo-03")
-      .setAttribute("src", data[3].company_logo);
-    document.getElementById("company-description-03").innerHTML =
-      data[3].description;
-
-    document.getElementById("company-title-04").innerHTML =
-      data[4].company + " : " + data[4].title;
-    document
-      .getElementById("companylogo-04")
-      .setAttribute("src", data[4].company_logo);
-    document.getElementById("company-description-04").innerHTML =
-      data[4].description;
-
-    document.getElementById("company-title-05").innerHTML =
-      data[5].company + " : " + data[5].title;
-    document
-      .getElementById("companylogo-05")
-      .setAttribute("src", data[5].company_logo);
-    document.getElementById("company-description-05").innerHTML =
-      data[5].description;
+  for (let index = 0; index < data.length; index++) {
+    let createdCard = jobCard(data[index], index);
+    container.appendChild(createdCard);
   }
 }
-// function detailsSend() {
-//   let company_job_description = document.getElementById("company-title-00")
-//     .innerHTML;
-//   let img_src = document.getElementById("companylogo-02").src;
-//   let company_description = document.getElementById("company-description-02")
-//     .innerHTML;
 
-//   document.getElementById("job-title").innerHTML = company_job_description;
-//   // document.getElementById("company").innerHTML = data[0].company;
-//   document.getElementById("company-logo").setAttribute("src", img_src);
-//   document.getElementById("description").innerHTML =
-//     data[0].company_description;
-//   // document.getElementById("apply_btn").setAttribute("href", data[0].url);
-// }
-//MAY NOT BE USED
-function changedisplay(data) {
-  console.log("clicked");
-  //onclick change the main display
-  document.getElementById("job-title").innerHTML = data.title;
-  document.getElementById("company").innerHTML = data.company;
-  document
-    .getElementById("company-logo")
-    .setAttribute("src", data.company_logo);
-  document.getElementById("description").innerHTML = data.description;
+function jobCard(jsonObject, arrayIndex) {
+  let cardDiv = document.createElement("div");
+  cardDiv.setAttribute("class", "card d-flex align-items-center");
+  const { company, company_logo, title, description, location } = jsonObject;
+
+  let shortDesc = subStringDescShort(description, description.length);
+  cardDiv.setAttribute("id", arrayIndex);
+  cardDiv.innerHTML = `
+      <img id="company_logo" src="${company_logo}"
+          class="card-img-top ms-2 mt-4 card_photo">
+      <div class="card-body">
+        <h3 id="job_title" class="card-title pt-2">${title}</h3>
+        <h4 class="text-muted pt-4 pb-4" id="company_name"> at ${company}</h4> 
+        <h5 id="location">Location:${location}</h5>
+        <p  id="company_description" class="card-text">${shortDesc}</p>
+        <div class="card-body">
+          <a href="./job-details.html" class="card-link btn col-12 details">Details</a>
+        </div>
+      </div>
+    </div>`;
+
+  cardDiv.querySelector(".details").addEventListener("click", detailsSend);
+  return cardDiv;
 }
 
-/*
-*   HERE WILL BE CODE THAT I MAY NEED LATER
+function detailsSend(event) {
+  let card = event.target.parentElement.parentElement.parentElement;
+  console.log(jobsArray[card.id], "logging object at index card.id");
+  localStorage.setItem("jobObject", JSON.stringify(jobsArray[card.id]));
+}
 
-HTML CODE:  src="https://www.thetravelmagazine.net/wp-content/uploads/World-Wonders-Tour-Image.jpg"
-*/
+function subStringDescShort(descString, descStringLength) {
+  let firstPIndex = descString.indexOf("<p>");
+  let lastPIndex = descString.indexOf("</p>") + 3;
+
+  let firstPString = descString.substring(firstPIndex, lastPIndex);
+  if (descString.length === descStringLength) {
+    descString = descString.substring(lastPIndex + 1);
+    let secondPString = subStringDescShort(descString, descStringLength);
+    let shortDesc = firstPString + secondPString;
+    return shortDesc;
+  }
+  return firstPString;
+}

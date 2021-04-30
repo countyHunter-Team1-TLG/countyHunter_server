@@ -47,6 +47,7 @@ figcaption {
 
 body {
   background-color: #def2f178;
+  width: 100vmax;
 }
 /* #FEFFFF   white*/
 /* #17242A dark */
@@ -58,7 +59,7 @@ body {
   background-image: radial-gradient(ellipse, #2b7a77, #def2f1);
   background-size: 400% 400%;
   height: 100%;
-  width: 100%;
+  width: 100vmax;
 }
 
 @keyframes gradient {
@@ -75,6 +76,7 @@ body {
 
 #nav {
   background-color: #3aafa9;
+  width: 100vmax;
 }
 
 form .btn,
@@ -84,9 +86,19 @@ form .btn,
 #apply_btn {
   background-color: #2b7a77;
   color: #feffff;
+  margin-right: 10px;
 }
 
-#details {
+#index_container {
+  height: 100vmax;
+}
+
+.card_photo {
+  width: 90%;
+  height: auto;
+}
+
+.details, #details {
   background-color: #3aafa9;
 }
 #nav-tabContent .active {

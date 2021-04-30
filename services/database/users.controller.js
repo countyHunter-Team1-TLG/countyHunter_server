@@ -70,6 +70,7 @@ class UserController {
     try {
       const userFromBody = req.body;
 
+      // collect error message and send in json
       let errors = {};
       if (userFromBody && userFromBody.password.length < 8) {
         errors.password = "Your password must be at least 8 characters.";
@@ -88,16 +89,16 @@ class UserController {
         return;
       } else {
         // encrypt password
-        // remove it when the client side has this mechanism
         const userInfo = {
           ...userFromBody,
           password: await hashPassword(userFromBody.password),
         };
-
+        // insertOne user in db
         const insertResult = await UsersConnection.addUser(userInfo);
         if (!insertResult.success) {
           errors.email = insertResult.error;
         }
+        // get user from db to verify correctness
         userFromDB = await UsersConnection.getUser(userFromBody.email);
 
         if (userFromDB === null) {
@@ -111,7 +112,7 @@ class UserController {
           res.status(400).json(errors);
           return;
         }
-
+        // can use res.json()
         let user = new User(userFromDB);
         let json = user.toJson();
         res.send({
@@ -150,7 +151,7 @@ class UserController {
         res.status(401).json({ error: "Make sure your email is correct." });
         return;
       }
-      const user = new User(userData);
+      const user = new User(userData); // construct User
 
       if (!(await user.comparePassword(password))) {
         res.status(401).json({ error: "Make sure your password is correct." });

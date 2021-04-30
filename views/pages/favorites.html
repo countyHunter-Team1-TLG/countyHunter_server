@@ -10,79 +10,82 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./Assets/main.css">
+    <link rel="stylesheet" href="../Assets/main.css">
   </head>
   <body>
     <div class="container-fluid">
       <!-- Logo -->
       <div class="bg-secondary p-5 text-center" id="jumbo">
         <h1 class="display-4">
-          <a class="text-decoration-none text-white" href="./index.html" id="logo">County Hunter</a>
+          <a class="text-decoration-none text-white" href="../index.html" id="logo">County Hunter</a>
         </h1>
       </div>
       <!-- Nav -->
-      <nav class="navbar navbar-expand-lg navbar-light mb-5" id="nav">
-        <div class="container-fluid">
-          <a id="logo" class="navbar-brand" href="./index.html">County Hunter</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarScroll"
-            aria-controls="navbarScroll"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+    <nav class="navbar navbar-expand-lg navbar-light mb-5" id="nav">
+      <div class="container-fluid">
+        <a id="logo" class="navbar-brand" href="../index.html">County Hunter</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul
+            class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
+            style="--bs-scroll-height: 100px"
           >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul
-              class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll"
-              style="--bs-scroll-height: 100px"
-            >
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  aria-current="page"
-                  href="./Htmls/house-finder.html"
-                  >House Finder</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./Htmls/job-finder.html"
-                  >Job Finder</a
-                >
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarScrollingDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  About Us
-                </a>
-                <ul
-                  class="dropdown-menu"
-                  aria-labelledby="navbarScrollingDropdown"
-                >
-                  <li>
-                    <a class="dropdown-item" href="./Htmls/mission.html">Mission Statement</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="./Htmls/updates.html">Upcoming Improvements</a>
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="./Htmls/about-us.html"
-                      >The Team</a
-                    >
-                  </li>
-                </ul>
-              </li>
-            </ul>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="./house-finder.html"
+                >House Finder</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./job-finder.html"
+                >Job Finder</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="./favorites.html"
+                >Favorites</a
+              >
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link active dropdown-toggle"
+                href="#"
+                id="navbarScrollingDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                About Us
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarScrollingDropdown"
+              >
+                <li><a class="dropdown-item" href="./mission.html">Mission Statement</a></li>
+                <li>
+                  <a class="dropdown-item" href="./updates.html">Upcoming Improvements</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="./about-us.html"
+                    >The Team</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
             <form class="col-9 d-flex justify-content-end" id="job-search">
 
                 <input type="text" class="me-2 col-2" id="inputTechnology" placeholder="Technology: Java, Python, etc...">
@@ -147,9 +150,9 @@
             
                 <button type="submit" class="btn btn-primary">Search</button>    
             </form>
-          </div>
         </div>
-      </nav>
+      </div>
+    </nav>
     </div>
 
     <!-- Main -->
@@ -171,14 +174,13 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4 d-flex justify-content-around">
                   <div class="card">
                     <img src="https://www.thetravelmagazine.net/wp-content/uploads/World-Wonders-Tour-Image.jpg"
-                        style="width: 90%"
-                        class="card-img-top"
+                        class="card-img-top ms-2 mt-4 card_photo"
                         alt="...">
                     <div class="card-body">
                       <h5 class="card-title">Card title</h5>
                       <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                       <div class="card-body">
-                        <a href="#" class="card-link btn" id="details">Details</a>
+                        <a href="#" class="card-link btn details">Details</a>
                         <a href="#" class="card-link btn btn-danger">Remove</a>
                       </div>
                     </div>

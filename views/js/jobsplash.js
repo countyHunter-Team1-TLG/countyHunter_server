@@ -1,3 +1,12 @@
+var jobObject = JSON.parse(localStorage.getItem("jobObject"));
+console.log(jobObject);
+document.getElementById("job-title").innerHTML = jobObject.title;
+
+document
+  .getElementById("company-logo")
+  .setAttribute("src", jobObject.company_logo);
+document.getElementById("description").innerHTML = jobObject.description;
+
 document.getElementById("job-search").addEventListener("submit", searchJobs);
 
 //handle search button click
@@ -42,25 +51,25 @@ function displayFoundJobs(data) {
     document.getElementById("apply_btn").setAttribute("href", data[0].url);
     //ISSUE USING THE URL TO DIRECTLY APPLY AS IT RETURNS AN HTML ELEMENT WITH THE LINK AND NOT JUST THE LINK
     // how_to_apply
-    if (data.length === 2) {
-      //rest of the jobs SIDE BAR
-      document.getElementById("list-home-list").innerHTML = data[1].company;
-      document.getElementById("list-home").innerHTML = data[1].title;
-      return;
-    } else if (data.length === 3) {
-      document.getElementById("list-profile-list").innerHTML = data[2].company;
-      document.getElementById("list-profile").innerHTML = data[2].title;
-      return;
-    } else if (data.length === 4) {
-      document.getElementById("list-messages-list").innerHTML = data[3].company;
-      document.getElementById("list-messages").innerHTML = data[3].title;
-      return;
-    } else if (data.length === 5) {
-      document.getElementById("list-settings-list").innerHTML = data[4].company;
-      document.getElementById("list-settings").innerHTML = data[4].title;
-      return;
-    } else {
-      return;
-    }
+    //   if (data.length === 2) {
+    //     //rest of the jobs SIDE BAR
+    //     document.getElementById("list-home-list").innerHTML = data[1].company;
+    //     document.getElementById("list-home").innerHTML = data[1].title;
+    //     return;
+    //   } else if (data.length === 3) {
+    //     document.getElementById("list-profile-list").innerHTML = data[2].company;
+    //     document.getElementById("list-profile").innerHTML = data[2].title;
+    //     return;
+    //   } else if (data.length === 4) {
+    //     document.getElementById("list-messages-list").innerHTML = data[3].company;
+    //     document.getElementById("list-messages").innerHTML = data[3].title;
+    //     return;
+    //   } else if (data.length === 5) {
+    //     document.getElementById("list-settings-list").innerHTML = data[4].company;
+    //     document.getElementById("list-settings").innerHTML = data[4].title;
+    //     return;
+    //   } else {
+    //     return;
+    //   }
   }
 }
