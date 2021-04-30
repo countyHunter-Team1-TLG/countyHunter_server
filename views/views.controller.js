@@ -65,6 +65,14 @@ class ViewController {
       return;
     }
   }
+  static async udpate(req, res, next) {
+    try {
+      res.render("update");
+    } catch (e) {
+      res.status(400).json({ error: e });
+      return;
+    }
+  }
 }
 
 module.exports = { ViewController };
