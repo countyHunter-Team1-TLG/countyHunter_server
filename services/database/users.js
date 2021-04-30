@@ -49,16 +49,19 @@ class UsersConnection {
    */
   static async addUser(userInfo) {
     try {
-      let options = { w: "majority", wtimeout: 5000 }; // 2/3 servers need to be updated
+      let options = { w: "majority", wtimeout: 10000 }; // 2/3 servers need to be updated
       let { name, email, password } = userInfo;
       await users.insertOne({ name, email, password }, options);
       return { success: true };
     } catch (e) {
       if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
-        return { error: "A user with the given email already exists." };
+        return {
+          success: false,
+          error: "A user with the given email already exists.",
+        };
       }
       console.error(`Error occurred while adding new user, ${e}.`);
-      return { error: e };
+      return { success: false, error: e };
     }
   }
 

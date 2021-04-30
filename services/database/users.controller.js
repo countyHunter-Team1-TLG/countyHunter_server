@@ -104,7 +104,10 @@ class UserController {
           errors.general = "Internal error, please try again later";
         }
 
-        if (Object.keys(errors).length > 0 && errors.error !== {}) {
+        if (
+          Object.keys(errors).length > 0 &&
+          Object.keys(errors.error).length != 0
+        ) {
           res.status(400).json(errors);
           return;
         }
