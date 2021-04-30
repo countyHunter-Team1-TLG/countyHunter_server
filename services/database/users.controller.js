@@ -106,7 +106,7 @@ class UserController {
 
         //console.log(userInfo);
         const insertResult = await UsersConnection.addUser(userInfo);
-        //console.log(insertResult);
+        console.log(insertResult);
         if (!insertResult.success) {
           errors.email = insertResult.error;
           console.log(5);
