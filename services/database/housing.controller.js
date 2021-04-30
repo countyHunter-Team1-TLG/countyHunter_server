@@ -7,8 +7,9 @@ class HousingController {
   static async getArraysReady(req, res) {
     try {
       const houseFromBody = req.body;
-      //console.log(houseFromBody.city);
-      //console.log(houseFromBody.state);
+      console.log("house data received:");
+      console.log(houseFromBody.city);
+      console.log(houseFromBody.state);
 
       let errors = {};
       // req doesn't contain city and state

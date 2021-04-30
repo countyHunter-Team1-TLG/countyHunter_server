@@ -1,4 +1,4 @@
-const houseSearchUrl = "https://countyhunter.herokuapp.com/house/getArrays"
+const houseSearchUrl = "https://countyhunter.herokuapp.com/house/getArrays";
 // initial the data fetch, analysis and display
 
 // fetch data from database
@@ -7,17 +7,17 @@ const houseSearchUrl = "https://countyhunter.herokuapp.com/house/getArrays"
 
 // house search event
 let houseSearch = document.getElementById("house-search");
-houseSearch.addEventListener("submit", (ev) => {
+houseSearch.addEventListener("submit", async (ev) => {
   ev.preventDefault();
   let formData = new FormData(houseSearch);
   const data = new URLSearchParams(formData);
-  let response = await fetch(houseSearchUrl , {
-      method: "GET",
-      body: data,
-  }); 
+  console.log(`house data before sent: ${data}`);
+  let response = await fetch(houseSearchUrl, {
+    method: "GET",
+    body: data,
+  });
   let json = await response.json();
   console.log(json);
-
 });
 
 // don't need this fucntion
