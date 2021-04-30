@@ -46,7 +46,7 @@ class User {
     return jwt.sign(
       {
         //set expiration 60 min
-        exp: Math.floor(Date.now() / 1000) + 60 * 60,
+        exp: Math.floor(Date.now() / 1000) + 60 * 5,
         // use whole user information
         ...this.toJson(),
       },
@@ -69,10 +69,6 @@ class UserController {
   static async register(req, res) {
     try {
       const userFromBody = req.body;
-      console.log(userFromBody);
-      console.log(userFromBody.email);
-      console.log(userFromBody.password);
-      console.log(req.headers);
 
       let errors = {};
       if (userFromBody && userFromBody.password.length < 8) {
@@ -81,13 +77,12 @@ class UserController {
       if (userFromBody && userFromBody.name.length < 3) {
         errors.name = "You must specify a name of at least 3 characters.";
       }
-      const userFromDB = await UsersConnection.getUser(userFromBody.email);
+      let userFromDB = await UsersConnection.getUser(userFromBody.email);
 
-      if (userFromBody && userFromDB != null) {
-        console.log(`same email address ${userFromDB}`);
+      if (userFromBody && userFromDB !== null) {
         errors.email = `You cannot register accounts with same email address ${userFromBody.email}`;
       }
-      console.log(errors);
+
       if (Object.keys(errors).length > 0) {
         res.status(400).json(errors);
         return;
@@ -98,27 +93,30 @@ class UserController {
           ...userFromBody,
           password: await hashPassword(userFromBody.password),
         };
-        //console.log(userInfo);
+
         const insertResult = await UsersConnection.addUser(userInfo);
-        //console.log(insertResult);
         if (!insertResult.success) {
           errors.email = insertResult.error;
         }
         userFromDB = await UsersConnection.getUser(userFromBody.email);
-        if (!userFromDB) {
+
+        if (userFromDB === null) {
           errors.general = "Internal error, please try again later";
         }
 
-        if (Object.keys(errors).length > 0) {
+        if (
+          Object.keys(errors).length > 0 &&
+          Object.keys(errors.error).length > 0
+        ) {
           res.status(400).json(errors);
           return;
         }
 
-        const user = new User(userFromDB);
-
-        res.json({
+        let user = new User(userFromDB);
+        let json = user.toJson();
+        res.send({
           auth_token: user.encoded(),
-          info: user.toJson(),
+          info: json, // already convert to Json
         });
       }
     } catch (e) {
@@ -126,6 +124,13 @@ class UserController {
     }
   }
 
+  /**
+   *
+   * @param {object} req request from client
+   * @param {object} res response for client
+   * @param {next} next
+   * @returns
+   */
   static async login(req, res, next) {
     try {
       const { email, password } = req.body;
@@ -152,6 +157,7 @@ class UserController {
         return;
       }
 
+      // add JWT
       const loginResponse = await UsersConnection.loginUser(
         user.email,
         user.encoded()
@@ -171,14 +177,12 @@ class UserController {
     try {
       const userJwt = req.get("Authorization").slice("Bearer ".length);
       const userObj = await User.decoded(userJwt);
-      //console.log(userObj);
       var { error } = userObj;
       if (error) {
         res.status(401).json({ error });
         return;
       }
       const logoutResult = await UsersConnection.logoutUser(userObj.email);
-      //console.log(logoutResult);
       var { error } = logoutResult;
       if (error) {
         res.status(500).json({ error });

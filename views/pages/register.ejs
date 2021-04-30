@@ -26,19 +26,14 @@
     <h1 class="form-signin-heading text-center">Register</h1>
     <div class="container">
       <div class="wrapper">
-        <form
-          action="/user/register"
-          name="register_form"
-          method="POST"
-          class="form-signin"
-        >
+        <form name="register_form" id="register_form" class="form-signin">
           <div class="form-floating mb-3">
             <input
               type="text"
               class="form-control"
               name="name"
               id="name"
-              placeholder=""
+              placeholder="Enter your name. At least 3 characters"
               required
             />
             <label for="name">Name</label>
@@ -49,7 +44,7 @@
               id="email"
               name="email"
               class="form-control"
-              placeholder=""
+              placeholder="Enter valid email adddress"
               required
             />
             <label for="email">Email</label>
@@ -66,6 +61,7 @@
           </div>
           <div class="d-grid gap-2">
             <button
+              id="register_button"
               style="margin-top: 10px"
               class="btn btn-lg btn-primary"
               type="submit"
@@ -88,5 +84,6 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"
     ></script>
+    <script src="/js/register.js"></script>
   </body>
 </html>
