@@ -132,7 +132,7 @@ class UserController {
         }
         console.log(8);
 
-        let user = new User(userDB);
+        let user = new User(userFromDB);
         let json = user.toJson();
         console.log(`last step before send-json:${json}`);
 
