@@ -1,4 +1,4 @@
-document.getElementById("home-search").addEventListener("submit", searchHomes);
+//document.getElementById("home-search").addEventListener("submit", searchHomes);
 
 //handle search button click
 function searchHomes(e) {
