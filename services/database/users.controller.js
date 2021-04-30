@@ -100,7 +100,7 @@ class UserController {
           errors.email = insertResult.error;
         }
         userFromDB = await UsersConnection.getUser(userFromBody.email);
-        if (userFromDB == null) {
+        if (userFromDB === null) {
           errors.general = "Internal error, please try again later";
         }
 
