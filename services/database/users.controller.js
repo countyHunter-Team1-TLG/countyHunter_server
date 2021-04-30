@@ -231,7 +231,9 @@ class UserController {
   static async save(req, res) {
     try {
       const userJwt = req.get("Authorization").slice("Bearer ".length);
+      console.log(userJwt);
       const userFromHeader = await User.decoded(userJwt);
+      console.log(userFromHeader.jobPreferences);
       var { error } = userFromHeader;
       // if authentication token expired or wrong, login again
       if (error) {
@@ -252,7 +254,6 @@ class UserController {
       );
       const userFromDB = await UsersConnection.getUser(userFromHeader.email);
       const updatedUser = new User(userFromDB);
-
       res.json({
         auth_token: updatedUser.encoded(),
         info: updatedUser.toJson(),
