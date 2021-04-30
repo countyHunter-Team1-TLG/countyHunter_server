@@ -17,6 +17,7 @@ let svg = d3
 
 //Read the data
 // this need to be pulled from Mongodb
+
 let dataDB = [
   {
     name: "FSI",
@@ -283,7 +284,7 @@ svg
   .append("g")
   .append("text")
   .attr("x", function (d, i) {
-    return 30 + i * 60;
+    return 30 + i * 100;
   })
   .attr("y", 30)
   .text(function (d) {
