@@ -34,8 +34,6 @@ class UsersConnection {
   static async getUser(userEmail) {
     try {
       let userDB = await users.findOne({ email: userEmail });
-      console.log(`getUser():${userDB}`);
-
       return userDB;
     } catch (e) {
       return { error: e };
