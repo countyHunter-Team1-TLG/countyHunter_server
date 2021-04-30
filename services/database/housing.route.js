@@ -4,6 +4,6 @@ const houseCtrl = require("./housing.controller").HousingController;
 const houseRouter = express.Router();
 
 // associate put, delete, and get(id)
-houseRouter.route("/getArrays").get(houseCtrl.getArraysReady);
+houseRouter.route("/getArrays").post(houseCtrl.getArraysReady);
 
 module.exports = houseRouter;

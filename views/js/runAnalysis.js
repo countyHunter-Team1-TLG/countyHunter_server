@@ -15,7 +15,7 @@ document
     const data = new URLSearchParams(formData);
     console.log(`house data before sent: ${data}`);
     let response = await fetch(houseSearchUrl, {
-      method: "GET",
+      method: "POST",
       body: data,
     });
     let json = await response.json();
