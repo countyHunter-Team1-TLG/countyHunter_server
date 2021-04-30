@@ -24,6 +24,47 @@ class ViewController {
       return;
     }
   }
+
+  static async houseFinder(req, res, next) {
+    try {
+      res.render("house-finder");
+    } catch (e) {
+      res.status(400).json({ error: e });
+      return;
+    }
+  }
+  static async jobFinder(req, res, next) {
+    try {
+      res.render("job-finder");
+    } catch (e) {
+      res.status(400).json({ error: e });
+      return;
+    }
+  }
+  static async favorites(req, res, next) {
+    try {
+      res.render("favorites");
+    } catch (e) {
+      res.status(400).json({ error: e });
+      return;
+    }
+  }
+  static async mission(req, res, next) {
+    try {
+      res.render("mission");
+    } catch (e) {
+      res.status(400).json({ error: e });
+      return;
+    }
+  }
+  static async aboutUs(req, res, next) {
+    try {
+      res.render("about-us");
+    } catch (e) {
+      res.status(400).json({ error: e });
+      return;
+    }
+  }
 }
 
 module.exports = { ViewController };
