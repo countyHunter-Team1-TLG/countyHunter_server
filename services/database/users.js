@@ -35,7 +35,7 @@ class UsersConnection {
     try {
       let userDB = await users.findOne({ email: userEmail });
       console.log(`getUser():${userDB}`);
-      let json = await new User(userDB).toJson();
+      let json = new User(userDB).toJson();
       console.log(`getUser()-json:${json}`);
 
       return json;
