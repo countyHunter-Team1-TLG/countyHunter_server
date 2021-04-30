@@ -284,7 +284,7 @@ svg
   .append("g")
   .append("text")
   .attr("x", function (d, i) {
-    return 30 + i * 100;
+    return 100 + i * 100;
   })
   .attr("y", 30)
   .text(function (d) {
