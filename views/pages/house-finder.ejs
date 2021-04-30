@@ -89,13 +89,13 @@
               </ul>
             </li>
           </ul>
-            <form class="col-9 d-flex justify-content-end" id="job-search">
+            <form class="col-9 d-flex justify-content-end" id="house-search">
 
                 <input type="text" class="me-2 col-2" id="inputTechnology" placeholder="Technology: Java, Python, etc...">
 
-                <input type="text" class="me-2 col-1" id="inputCity" placeholder="City">
+                <input name="city" type="text" class="me-2 col-1" id="inputCity" placeholder="City">
 
-                <select id="inputState" class="me-2 col-2">
+                <select name="state" id="inputState" class="me-2 col-2">
                     <option selected>State</option>
                     <option value="Alabama">Alabama - AL</option>
                     <option value="Alaska">Alaska - AK</option>
@@ -295,6 +295,8 @@
                 <!-- THIS IS THE CHART DISPLAY AREA BELOW -->
 
                 <div id="my_dataviz"><script src="/js/dataAnalysis.js"></script></div>
+                
+                <!-- THIS IS THE CHART DISPLAY AREA ABOVE -->
 
 
                 <span class="image featured"
@@ -417,7 +419,7 @@
     ></script>
 
     <!-- Create a div where the graph will take place -->
-    <script src="/js/runAnalysis.js"></script>;
+    <!-- <script src="/js/runAnalysis.js"></script>; -->
 
   </body>
 </html>
