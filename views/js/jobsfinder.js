@@ -90,7 +90,7 @@ function jobCard(jsonObject, arrayIndex) {
         <h5 id="location">Location:${location}</h5>
         <p  id="company_description" class="card-text">${shortDesc}</p>
         <div class="card-body">
-          <a href="./job-details.html" class="card-link btn col-12 details">Details</a>
+          <a href="/views/job-details" class="card-link btn col-12 details">Details</a>
         </div>
       </div>
     </div>`;
