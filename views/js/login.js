@@ -2,6 +2,11 @@ const serverUrl = "https://countyhunter.herokuapp.com/user/login";
 // login button
 var form = document.forms.namedItem("user_login_form");
 
+/**
+ * login button fetch POST request to server
+ * return authorization token if successfully login
+ * else return error message pop up alert message
+ */
 document
   .getElementById("user_login_button")
   .addEventListener("click", async function (ev) {
