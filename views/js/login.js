@@ -6,6 +6,7 @@ document
   .getElementById("user_login_button")
   .addEventListener("click", async function (ev) {
     ev.preventDefault();
+
     let formData = new FormData(form);
     const data = new URLSearchParams(formData);
     let response = await fetch(serverUrl, {

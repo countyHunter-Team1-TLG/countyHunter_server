@@ -24,6 +24,7 @@ document
     ev.preventDefault();
     let formData = new FormData(register_form);
     const data = new URLSearchParams(formData);
+    console.log(data);
     let response = await fetch(register_serverUrl, {
       method: "POST",
       body: data,
