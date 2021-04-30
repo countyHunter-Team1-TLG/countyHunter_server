@@ -106,14 +106,14 @@ class UserController {
 
         if (
           Object.keys(errors).length > 0 &&
-          Object.keys(errors.error).length != 0
+          Object.keys(errors.error).length > 0
         ) {
           res.status(400).json(errors);
           return;
         }
         let user = new User(userDB);
         let json = user.toJson();
-        console.log(`getUser()-json:${json}`);
+        console.log(`last step before send-json:${json}`);
 
         res.send({
           auth_token: user.encoded(),
