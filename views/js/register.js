@@ -1,19 +1,3 @@
-// const form = document.querySelector("form");
-
-// form.addEventListener("submit", async function (e) {
-//   e.preventDefault();
-
-//   const data = {
-//     name: document.getElementById("name").value,
-//     email: document.getElementById("email").value,
-//     password: document.getElementById("password").value,
-//   };
-
-//   await axios.post("/user/register", data).then((res) => {
-//     console.log(res);
-//   });
-// });
-
 const register_serverUrl = "https://countyhunter.herokuapp.com/user/register";
 // register button
 var register_form = document.forms.namedItem("register_form");
@@ -35,4 +19,5 @@ document
     } else {
       alert(json.error);
     }
+    console.log(json);
   });
