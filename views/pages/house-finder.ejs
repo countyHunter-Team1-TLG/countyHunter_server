@@ -157,33 +157,34 @@
       </div>
     </nav>
 
-
-    <!-- Main -->
-      <div class="container-fluid text-center mt-5" id="charts">
-          <div id="content">
-              <!-- Content -->
-                <div class="d-flex justify-content-center align-items-center">
-                    <!-- THIS IS THE CHART DISPLAY AREA BELOW -->
-    
-                    <div id="my_dataviz"></script></div>
-                    
-                    <!-- THIS IS THE CHART DISPLAY AREA ABOVE -->
-                </div>
+    <div class="position-relative" id="charts">
+      <!-- Main -->
+        <div class="container-fluid text-center mt-5">
+            <div id="content">
+                <!-- Content -->
+                  <div class="d-flex justify-content-center align-items-center">
+                      <!-- THIS IS THE CHART DISPLAY AREA BELOW -->
+      
+                      <div id="my_dataviz"></script></div>
+                      
+                      <!-- THIS IS THE CHART DISPLAY AREA ABOVE -->
+                  </div>
+            </div>
+          <div class="d-flex justify-content-center mt-5">
+            <a href="/views/favorites" class="btn btn-outline-primary mt-5" id="fav_btn">View Favorites</a>
           </div>
-        <div class="d-flex justify-content-center mt-5">
-          <a href="/views/favorites" class="btn btn-outline-primary mt-5" id="fav_btn">View Favorites</a>
         </div>
-      </div>
-
-    <!-- Footer -->
-      <footer class="container-fluid text-center mt-5 d-flex flex-column align-items-center">
-        <h3 id="ex_links">External Links</h3>
-        <ul id="hlink-list" class="links">
-          <li><a href="https://www.zillow.com/">Zillow</a></li>
-          <li><a href="https://www.redfin.com/">Redfin</a></li>
-          <li><a href="https://www.realtor.com/">Realtor.com</a></li>
-        </ul>
-      </footer>
+  
+      <!-- Footer -->
+        <footer class="container-fluid position-absolute bottom-0 text-center mt-5 d-flex flex-column align-items-center">
+          <h3 id="ex_links">External Links</h3>
+          <ul id="hlink-list" class="links">
+            <li><a href="https://www.zillow.com/">Zillow</a></li>
+            <li><a href="https://www.redfin.com/">Redfin</a></li>
+            <li><a href="https://www.realtor.com/">Realtor.com</a></li>
+          </ul>
+        </footer>
+    </div>
     <!-- <script src="/js/homeFinder.js"></script> -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
