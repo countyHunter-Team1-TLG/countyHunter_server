@@ -130,6 +130,8 @@ class HousingMarket {
       } else {
         result.push(mdp);
       }
+      console.log(errors);
+      console.log(result);
       return result;
     } catch (e) {
       errors.message = e;
