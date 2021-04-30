@@ -1,4 +1,6 @@
 const register_serverUrl = "https://countyhunter.herokuapp.com/user/register";
+const serverUrl_main = "https://countyhunter.herokuapp.com/views/main";
+
 // register button
 var register_form = document.forms.namedItem("register_form");
 
@@ -25,6 +27,11 @@ document
       } else {
         alert(json.errors);
       }
+    } else {
+      sessionStorage.setItem("JWTOKEN", json.auth_token);
+      console.log(sessionStorage.getItem("JWTOKEN"));
+      console.log(json);
+      // render main page
+      window.open(serverUrl_main);
     }
-    console.log(json);
   });
