@@ -1,4 +1,5 @@
 const { use } = require("./users.route");
+const User = require("./users.controller").User;
 
 let users;
 let sessions;
@@ -33,8 +34,9 @@ class UsersConnection {
   static async getUser(userEmail) {
     try {
       let userDB = await users.findOne({ email: userEmail });
-      console.log(userDB);
-      return userDB;
+      console.log(`getUser():${userDB}`);
+      let json = await new User(userDB).toJson();
+      return json;
     } catch (e) {
       return { error: e };
     }
