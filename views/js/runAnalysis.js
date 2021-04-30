@@ -197,7 +197,7 @@ function displayData(data) {
     .append("g")
     .append("text")
     .attr("x", function (d, i) {
-      return 100 + i * 60;
+      return 40 + i * 100;
     })
     .attr("y", 30)
     .text(function (d) {
