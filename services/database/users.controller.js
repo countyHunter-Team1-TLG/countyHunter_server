@@ -103,6 +103,9 @@ class UserController {
         if (userFromDB === null) {
           errors.general = "Internal error, please try again later";
         }
+        console.log(errors);
+        console.log(Object.keys(errors).length);
+        console.log(Object.keys(errors.error).length);
 
         if (
           Object.keys(errors).length > 0 &&
