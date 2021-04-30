@@ -1,16 +1,19 @@
 // set the dimensions and margins of the graph
-let margin = { top: 10, right: 100, bottom: 30, left: 30 },
-  width = 900 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+let dataDisplayMargin = { top: 10, right: 100, bottom: 30, left: 30 },
+  width = 900 - dataDisplayMargin.left - dataDisplayMargin.right,
+  height = 400 - dataDisplayMargin.top - dataDisplayMargin.bottom;
 
 // append the svg object to the body of the page
 let svg = d3
   .select("#my_dataviz")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+  .attr("width", width + dataDisplayMargin.left + dataDisplayMargin.right)
+  .attr("height", height + dataDisplayMargin.top + dataDisplayMargin.bottom)
   .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  .attr(
+    "transform",
+    "translate(" + dataDisplayMargin.left + "," + dataDisplayMargin.top + ")"
+  );
 
 //Read the data
 // this need to be pulled from Mongodb
@@ -301,7 +304,10 @@ svg
 
 var g = svg
   .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  .attr(
+    "transform",
+    "translate(" + dataDisplayMargin.left + "," + dataDisplayMargin.top + ")"
+  );
 
 g.append("g")
   .attr("transform", "translate(0," + height + ")")
