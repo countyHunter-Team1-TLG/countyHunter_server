@@ -7,10 +7,6 @@ class HousingController {
   static async getArraysReady(req, res) {
     try {
       const houseFromBody = req.body;
-      console.log("house data received:");
-      console.log(houseFromBody.city);
-      console.log(houseFromBody.state);
-
       let errors = {};
       // req doesn't contain city and state
       // errors.info = `You didn't provide city and state`
@@ -28,7 +24,6 @@ class HousingController {
         houseFromBody.city,
         houseFromBody.state
       );
-      console.log(result);
       res.send(result);
     } catch (e) {
       res.status(500).json({ error: e });
