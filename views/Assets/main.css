@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@700&family=Montserrat:wght@500&family=Roboto+Slab&display=swap");
+
+h2,
+h3 {
+  font-family: "Roboto Slab", serif;
+}
+
+a {
+  font-family: "Montserrat", sans-serif;
+}
+
+figure {
+  position: relative;
+}
+
+figcaption h2,
+figcaption h3,
+figcaption p {
+  font-family: "Roboto Slab", serif;
+  font-weight: bolder;
+  color: black;
+  text-shadow: 0px 0px 5px #feffff;
+}
+
+figcaption {
+  width: auto;
+  height: auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.192);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  position: relative;
+}
+.figure-img {
+  position: relative;
+  bottom: 40px;
+}
+#right_profile {
+  left: 165px;
+  top: 40px;
+}
+#left_profile {
+  right: 165px;
+  top: 40px;
+}
+
+body {
+  background-color: #def2f178;
+  width: 100vmax;
+}
+/* #FEFFFF   white*/
+/* #17242A dark */
+/* #3AAFA9 light blue */
+/* #DEF2F1 ice */
+/* #2B7A77 darker blue-green */
+#jumbo {
+  animation: gradient 5.5s ease infinite;
+  background-image: radial-gradient(ellipse, #2b7a77, #def2f1);
+  background-size: 400% 400%;
+  height: 100%;
+  width: 100vmax;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 51% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+  100% {
+    background-position: 51% 0%;
+  }
+}
+
+#nav {
+  background-color: #3aafa9;
+  width: 100vmax;
+}
+
+form .btn,
+#list-tab .active,
+#fav_btn,
+#back_search,
+#apply_btn {
+  background-color: #2b7a77;
+  color: #feffff;
+  margin-right: 10px;
+}
+
+#index_container {
+  height: 100vmax;
+}
+
+.card_photo {
+  width: 90%;
+  height: auto;
+}
+
+.details,
+#details {
+  background-color: #3aafa9;
+}
+#nav-tabContent .active {
+  background-color: #feffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 10px #feffff;
+}
+
+footer {
+  background-color: #3aafa9;
+}
+
+footer li,
+footer li a,
+.links li {
+  text-decoration: solid;
+  list-style: none;
+  color: black;
+}
+
+#logo {
+  font-family: "Montserrat Subrayada", sans-serif;
+  color: rgb(32, 25, 25) !important;
+  text-shadow: 0px 0px 15px #feffff;
+}
+
+.about_pic {
+  width: 150px;
+  height: 150px;
+  z-index: 20;
+}
+
+#dog_pic {
+  min-height: 100%;
+  min-width: 1024px;
+
+  width: 100%;
+  height: auto;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -90;
+
+  background-color: transparent;
+}
+
+@media screen and (max-width: 1024px) {
+  #dog_pic {
+    left: 50%;
+    margin-left: -512px; /* 50% */
+  }
+}
+/* <img src="../Assets/Images/Dog-CountyHunter.png" alt="" class="img-fluid" id="dog_pic"> */
