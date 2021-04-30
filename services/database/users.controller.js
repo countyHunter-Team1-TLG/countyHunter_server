@@ -82,30 +82,43 @@ class UserController {
       if (userFromBody && userFromDB !== null) {
         errors.email = `You cannot register accounts with same email address ${userFromBody.email}`;
       }
+      console.log(1);
+
       console.log(errors);
       console.log(Object.keys(errors).length);
       console.log(Object.keys(errors.error).length);
 
       if (Object.keys(errors).length > 0) {
+        console.log(2);
+
         res.status(400).json(errors);
         return;
       } else {
+        console.log(3);
+
         // encrypt password
         // remove it when the client side has this mechanism
         const userInfo = {
           ...userFromBody,
           password: await hashPassword(userFromBody.password),
         };
+        console.log(4);
+
         //console.log(userInfo);
         const insertResult = await UsersConnection.addUser(userInfo);
         //console.log(insertResult);
         if (!insertResult.success) {
           errors.email = insertResult.error;
+          console.log(5);
         }
         userFromDB = await UsersConnection.getUser(userFromBody.email);
+        console.log(6);
+
         if (userFromDB === null) {
           errors.general = "Internal error, please try again later";
         }
+        console.log(7);
+
         console.log(errors);
         console.log(Object.keys(errors).length);
         console.log(Object.keys(errors.error).length);
@@ -117,6 +130,8 @@ class UserController {
           res.status(400).json(errors);
           return;
         }
+        console.log(8);
+
         let user = new User(userDB);
         let json = user.toJson();
         console.log(`last step before send-json:${json}`);
