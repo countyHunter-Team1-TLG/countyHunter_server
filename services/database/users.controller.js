@@ -46,7 +46,7 @@ class User {
     return jwt.sign(
       {
         //set expiration 60 min
-        exp: Math.floor(Date.now() / 1000) + 60 * 60,
+        exp: Math.floor(Date.now() / 1000) + 60 * 5,
         // use whole user information
         ...this.toJson(),
       },
@@ -69,10 +69,6 @@ class UserController {
   static async register(req, res) {
     try {
       const userFromBody = req.body;
-      console.log(userFromBody);
-      console.log(userFromBody.email);
-      console.log(userFromBody.password);
-      console.log(req.headers);
 
       let errors = {};
       if (userFromBody && userFromBody.password.length < 8) {
@@ -84,7 +80,6 @@ class UserController {
       const userFromDB = await UsersConnection.getUser(userFromBody.email);
 
       if (userFromBody && userFromDB != null) {
-        console.log(`same email address ${userFromDB}`);
         errors.email = `You cannot register accounts with same email address ${userFromBody.email}`;
       }
       console.log(errors);
@@ -158,6 +153,7 @@ class UserController {
         return;
       }
 
+      // add JWT
       const loginResponse = await UsersConnection.loginUser(
         user.email,
         user.encoded()

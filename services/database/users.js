@@ -27,12 +27,12 @@ class UsersConnection {
 
   /**
    * find username and password
-   * @param {String} email
+   * @param {String} userEmail
    * @returns
    */
-  static async getUser(email) {
+  static async getUser(userEmail) {
     try {
-      let userDB = await users.findOne({ email });
+      let userDB = await users.findOne({ email: userEmail });
       console.log(userDB);
       return userDB;
     } catch (e) {
