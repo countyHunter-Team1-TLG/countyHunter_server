@@ -238,22 +238,22 @@ function displayData(data) {
 function getLegandName(legend) {
   let name;
   switch (legend) {
-    case db_collection.FOR_SALE_INVENTORY:
+    case "FSI":
       name = "For Sale Inventory";
       break;
-    case db_collection.MEDIAN_DAYS_PENDING:
+    case "MDDP":
       name = "Median Days Pending";
       break;
-    case db_collection.MEDIAN_LIST_PRICE:
+    case "MLP":
       name = "Median List Price";
       break;
-    case db_collection.MEDIAN_SALE_PRICE:
+    case "MSP":
       name = "Median Sale Price";
       break;
-    case db_collection.SALES_COUNT:
+    case "SC":
       name = "Sales Count";
       break;
-    case db_collection.MEDIAN_PRICE_CUT:
+    case "MPC":
       name = "Median Price Cut";
       break;
     default:
