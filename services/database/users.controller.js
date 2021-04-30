@@ -77,7 +77,7 @@ class UserController {
       if (userFromBody && userFromBody.name.length < 3) {
         errors.name = "You must specify a name of at least 3 characters.";
       }
-      const userFromDB = await UsersConnection.getUser(userFromBody.email);
+      let userFromDB = await UsersConnection.getUser(userFromBody.email);
 
       if (userFromBody && userFromDB !== null) {
         errors.email = `You cannot register accounts with same email address ${userFromBody.email}`;
