@@ -27,12 +27,18 @@ document
       } else {
         alert(json.errors);
       }
+    } else {
+      sessionStorage.setItem("JWTOKEN", json.auth_token);
+      console.log(sessionStorage.getItem("JWTOKEN"));
+      console.log(json);
+      // render main page
+      window.open(serverUrl_main);
     }
-    sessionStorage.setItem("JWTOKEN", json.auth_token);
-    console.log(sessionStorage.getItem("JWTOKEN"));
-    console.log(json);
-    // send get request to render main page
+  });
+
+document
+  .getElementById("continue_guest")
+  .addEventListener("click", function (ev) {
+    ev.preventDefault();
     window.open(serverUrl_main);
-    //let renderResponse = await render.json();
-    //console.log(renderResponse);
   });
