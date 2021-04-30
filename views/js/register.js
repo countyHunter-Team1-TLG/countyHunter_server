@@ -1,6 +1,6 @@
 const form = document.querySelector("form");
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const data = {
@@ -9,7 +9,7 @@ form.addEventListener("submit", function (e) {
     password: document.getElementById("password").value,
   };
 
-  axios.post("/user/register", data).then((res) => {
+  await axios.post("/user/register", data).then((res) => {
     console.log(res);
   });
 });

@@ -82,6 +82,9 @@ class UserController {
       if (userFromBody && userFromDB !== null) {
         errors.email = `You cannot register accounts with same email address ${userFromBody.email}`;
       }
+      console.log(errors);
+      console.log(Object.keys(errors).length);
+      console.log(Object.keys(errors.error).length);
 
       if (Object.keys(errors).length > 0) {
         res.status(400).json(errors);
