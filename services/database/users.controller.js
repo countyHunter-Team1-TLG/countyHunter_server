@@ -83,9 +83,6 @@ class UserController {
         errors.email = `You cannot register accounts with same email address ${userFromBody.email}`;
       }
       console.log(1);
-
-      console.log(errors);
-      console.log(Object.keys(errors).length);
       //console.log(Object.keys(errors.error).length);
 
       if (Object.keys(errors).length > 0) {
@@ -118,10 +115,6 @@ class UserController {
           errors.general = "Internal error, please try again later";
         }
         console.log(7);
-
-        console.log(errors);
-        console.log(Object.keys(errors).length);
-        console.log(Object.keys(errors.error).length);
 
         if (
           Object.keys(errors).length > 0 &&
