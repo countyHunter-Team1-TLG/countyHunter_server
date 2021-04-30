@@ -13,6 +13,7 @@ let svg = d3
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
+// this need to be pulled from Mongodb
 let dataDB = [
   {
     name: "FSI",
