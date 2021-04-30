@@ -32,9 +32,7 @@ document
     console.log(sessionStorage.getItem("JWTOKEN"));
     console.log(json);
     // send get request to render main page
-    let render = await fetch(serverUrl_main, {
-      method: "get",
-    });
+    window.open(serverUrl_main);
     //let renderResponse = await render.json();
     //console.log(renderResponse);
   });
