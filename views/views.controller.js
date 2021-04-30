@@ -27,7 +27,7 @@ class ViewController {
 
   static async houseFinder(req, res, next) {
     try {
-      res.render("house-finder");
+      res.render("house-finder.ejs");
     } catch (e) {
       res.status(400).json({ error: e });
       return;
