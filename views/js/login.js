@@ -1,4 +1,6 @@
-const serverUrl = "https://countyhunter.herokuapp.com/user/login";
+const serverUrl_login = "https://countyhunter.herokuapp.com/user/login";
+const serverUrl_main = "https://countyhunter.herokuapp.com/views/main";
+
 // login button
 var form = document.forms.namedItem("user_login_form");
 
@@ -14,7 +16,7 @@ document
 
     let formData = new FormData(form);
     const data = new URLSearchParams(formData);
-    let response = await fetch(serverUrl, {
+    let response = await fetch(serverUrl_login, {
       method: "POST",
       body: data,
     });
@@ -26,5 +28,13 @@ document
         alert(json.errors);
       }
     }
+    sessionStorage.setItem("JWTOKEN", json.auth_token);
+    console.log(sessionStorage.getItem("JWTOKEN"));
     console.log(json);
+    // send get request to render main page
+    let render = await fetch(serverUrl_main, {
+      method: "get",
+    });
+    let renderResponse = await render.json();
+    console.log(renderResponse);
   });
