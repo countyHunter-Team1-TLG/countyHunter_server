@@ -1,6 +1,3 @@
-const HousingMarket = require("../../countyHunter_server/services/database/housingMarket")
-  .HousingMarket;
-
 // set the dimensions and margins of the graph
 let margin = { top: 10, right: 100, bottom: 30, left: 30 },
   width = 900 - margin.left - margin.right,
@@ -286,7 +283,7 @@ svg
   })
   .attr("y", 30)
   .text(function (d) {
-    return HousingMarket.getLegandName(d.name);
+    return d.name;
   })
   .style("fill", function (d) {
     return myColor(d.name);
