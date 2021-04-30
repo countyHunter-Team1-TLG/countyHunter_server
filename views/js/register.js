@@ -15,14 +15,14 @@
 // });
 
 const serverUrl = "https://countyhunter.herokuapp.com/user/register";
-// login button
-var form = document.forms.namedItem("register_form");
+// register button
+var register_form = document.forms.namedItem("register_form");
 
 document
-  .getElementById("register_form")
-  .addEventListener("submit", async function (ev) {
+  .getElementById("register_button")
+  .addEventListener("click", async function (ev) {
     ev.preventDefault();
-    let formData = new FormData(form);
+    let formData = new FormData(register_form);
     const data = new URLSearchParams(formData);
     let response = await fetch(serverUrl, {
       method: "POST",
