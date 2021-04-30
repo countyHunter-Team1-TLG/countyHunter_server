@@ -35,6 +35,6 @@ document
     let render = await fetch(serverUrl_main, {
       method: "get",
     });
-    let renderResponse = await render.json();
-    console.log(renderResponse);
+    //let renderResponse = await render.json();
+    //console.log(renderResponse);
   });
