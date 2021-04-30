@@ -14,7 +14,7 @@ document
       body: data,
     });
     let json = await response.json();
-    if (!json.success) {
+    if (!json.auth_token) {
       alert(json.error);
     }
     console.log(json);
