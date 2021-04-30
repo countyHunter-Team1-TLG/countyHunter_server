@@ -23,7 +23,7 @@ document
 
     // refresh and display
     document.getElementById("my_dataviz").innerHTML = "";
-    displayData();
+    displayData(json);
   });
 
 // don't need this fucntion
@@ -55,6 +55,9 @@ function displayData(data) {
   //Read the data
   // this need to be pulled from Mongodb
   let dataDB = data;
+  if (typeof dataDB != Array) {
+    console.log("display data: dataDB not array");
+  }
   // let dataDB = [
   //   {
   //     name: "FSI",
