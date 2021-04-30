@@ -9,7 +9,7 @@ const houseRouter = require("./services/database/housing.route");
 
 const app = express();
 app.set("view engine", "ejs");
-app.set("views", "./views/pages");
+app.set("views", express.static("./views/pages"));
 // static files
 app.use("/Assets", express.static("./views/Assets"));
 app.use("/js", express.static("./views/js"));
